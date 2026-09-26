@@ -21,7 +21,7 @@ const i18n = {
     globalPrice: "Global fiyat", openInterest: "Açık pozisyon", owners: "Katılımcı", actionsLocked: "İşlemler kilitli", launchWarning: "İmzalı seed, paket hash'i veya referee odaları doğrulanamadı.",
     openOffers: "Açık tahminler", all: "Tümü", long: "Long", short: "Short", makerCall: "Maker tahmini", price: "Fiyat", size: "Miktar", expires: "Bitiş",
     refereeFeed: "Referee akışı", signedOnly: "Yalnızca doğrulanmış mesajlar", nextLimits: "Sonraki sweep aralığı", longAccounts: "Long hesap", shortAccounts: "Short hesap",
-    settledLast: "Son sweep sonuçlanan", voidLast: "Son sweep geçersiz", liveBoard: "Canlı sıralama", score: "Skor", tradeTape: "İşlem akışı", officialTrades: "Çift imzalı resmî işlemler",
+    settledLast: "Son sweep sonuçlanan", voidLast: "Son sweep geçersiz", liveBoard: "Canlı sıralama", score: "Skor", tradeTape: "İşlem akışı", officialTrades: "Tüm kayıtlı odalardaki referee sonuçları",
     oneBet: "TEK NVDA FUTURE", makeCallTitle: "Tahminini oluştur", connectFirst: "Önce DID bağla", signingDid: "İmzalayan DID", nvdaUp: "NVDA yükselecek", openLong: "Long aç", nvdaDown: "NVDA düşecek", openShort: "Short aç",
     limitPrice: "İşlem fiyatı", quantity: "Miktar", minimumQty: "Minimum 0.10", offerDuration: "Teklif süresi", counterparty: "Karşı taraf", anyDid: "Herhangi bir kayıtlı DID",
     specificDid: "Belirli DID", makerWaits: "İşlem ancak karşı taraf imzalayınca başlar.", takerDid: "Taker DID", collateral: "Bağlanacak en yüksek teminat", baseFee: "Taraf başına temel ücret",
@@ -42,6 +42,7 @@ const i18n = {
     offerPosted: "Tahmin yayımlandı. Karşı taraf imzaladığında resmî işlem oluşacak.", offerPostedRoomPending: "Tahmin yayımlandı. İşlem odası kaydı gönderildi; referee listeleyene kadar kabul için sonraki sweep'i bekleyin.", tradeRoomWaiting: "İşlem odası kaydı gönderildi. Referee odayı listeledikten sonra tahmini tekrar kabul edin.", tradePosted: "Karşı imza gönderildi. Referee sonucunu bekle.", ownOffer: "Kendi teklifini kabul edemezsin.", reservedOffer: "Bu teklif başka bir DID için ayrılmış.",
     invalidOffer: "Offer JSON veya maker imzası geçersiz.", outsideLimits: "Fiyat güncel resmî aralığın dışında.", expiredOffer: "Teklifin sweep süresi dolmuş.", copied: "İmzalı offer JSON kopyalandı.", copy: "Kopyala",
     pending: "Bekliyor", settled: "Sonuçlandı", void: "Geçersiz", posted: "Gönderildi", publicTopOnly: "İlk 25 dışında", noPersonalCalls: "Aktif tahminin yok.", noPersonalTrades: "Henüz resmî işlemin yok.",
+    reasonShape: "İşlem biçimi geçersiz", reasonNotOwner: "Taraflardan biri yarışmaya kayıtlı değil", reasonTaker: "Teklif başka bir DID için ayrılmış", reasonSettled: "İşlem kimliği daha önce sonuçlandı", reasonExpired: "Teklifin sweep süresi doldu", reasonLocked: "İşlem dönemi kilitlendi", reasonLimits: "Fiyat izin verilen aralığın dışında", reasonFunds: "Yetersiz bakiye veya teminat",
     sweepExpiry: "Sweep {n}'e kadar", updatedNow: "şimdi", minutesAgo: "{n} dk önce", secondsAgo: "{n} sn önce", priceRangeHint: "{low} ile {high} arasında olmalı", expiresAtSweep: "Sweep {n}",
   },
   en: {
@@ -50,7 +51,7 @@ const i18n = {
     newCall: "New call", reference: "Reference", allowedRange: "Allowed range", globalPrice: "Global price", openInterest: "Open interest", owners: "Owners", actionsLocked: "Actions locked",
     launchWarning: "The signed seed, package hash, or referee rooms could not be verified.", openOffers: "Open calls", all: "All", long: "Long", short: "Short", makerCall: "Maker call", price: "Price",
     size: "Size", expires: "Expires", refereeFeed: "Referee feed", signedOnly: "Verified posts only", nextLimits: "Next sweep limits", longAccounts: "Long accounts", shortAccounts: "Short accounts",
-    settledLast: "Settled last sweep", voidLast: "Void last sweep", liveBoard: "Live board", score: "Score", tradeTape: "Trade tape", officialTrades: "Countersigned official trades", oneBet: "ONE NVDA FUTURE",
+    settledLast: "Settled last sweep", voidLast: "Void last sweep", liveBoard: "Live board", score: "Score", tradeTape: "Trade tape", officialTrades: "Referee outcomes from all registered rooms", oneBet: "ONE NVDA FUTURE",
     makeCallTitle: "Make your call", connectFirst: "Connect DID first", signingDid: "Signing DID", nvdaUp: "NVDA goes up", openLong: "Open long", nvdaDown: "NVDA goes down", openShort: "Open short", limitPrice: "Trade price",
     quantity: "Quantity", minimumQty: "Minimum 0.10", offerDuration: "Offer duration", counterparty: "Counterparty", anyDid: "Any registered DID", specificDid: "Specific DID", makerWaits: "The trade starts only after a taker signs.",
     takerDid: "Taker DID", collateral: "Maximum tied collateral", baseFee: "Base fee per side", makerSide: "Your side", publishOffer: "Sign & publish call", irrevocable: "A signed open offer cannot be revoked in the official protocol. Use a short expiry.",
@@ -66,7 +67,7 @@ const i18n = {
     connectToTake: "Connect a DID to accept.", registerFirst: "Register your DID in the contest first.", waitMint: "Registration posted. The next sweep will issue 10,000 POLF.", ready: "Ready", notRegistered: "Not registered", registrationUnknown: "Registration history incomplete", registrationUnknownHelp: "The referee truncates large mint lists in public messages, so older registrations cannot be checked individually. Do not register again if you already registered. This confirmation only unlocks the interface; the referee remains authoritative.", registrationPosted: "Registration signed. Wait for the next sweep.", registrationConfirmed: "Previous registration confirmed for this browser.",
     offerPosted: "Call published. It becomes an official trade when another DID signs.", offerPostedRoomPending: "Call published. Trading-room registration was sent; wait for the next sweep before acceptance.", tradeRoomWaiting: "Trading-room registration was sent. Accept the call again after the referee lists the room.", tradePosted: "Countersignature posted. Wait for the referee result.", ownOffer: "You cannot take your own offer.", reservedOffer: "This offer is reserved for another DID.", invalidOffer: "Offer JSON or maker signature is invalid.",
     outsideLimits: "Price is outside the current official range.", expiredOffer: "The offer has expired by sweep.", copied: "Signed offer JSON copied.", copy: "Copy", pending: "Pending", settled: "Settled", void: "Void", posted: "Posted", publicTopOnly: "Outside public top 25",
-    noPersonalCalls: "You have no active calls.", noPersonalTrades: "You have no official trades yet.", sweepExpiry: "Until sweep {n}", updatedNow: "now", minutesAgo: "{n}m ago", secondsAgo: "{n}s ago", priceRangeHint: "Must be between {low} and {high}", expiresAtSweep: "Sweep {n}",
+    noPersonalCalls: "You have no active calls.", noPersonalTrades: "You have no official trades yet.", reasonShape: "Invalid trade shape", reasonNotOwner: "One of the parties is not registered", reasonTaker: "The call is reserved for another DID", reasonSettled: "The trade ID was already settled", reasonExpired: "The call expired by sweep", reasonLocked: "Trading is locked", reasonLimits: "Price is outside the allowed range", reasonFunds: "Insufficient balance or collateral", sweepExpiry: "Until sweep {n}", updatedNow: "now", minutesAgo: "{n}m ago", secondsAgo: "{n}s ago", priceRangeHint: "Must be between {low} and {high}", expiresAtSweep: "Sweep {n}",
   },
 };
 
@@ -391,6 +392,20 @@ function offerDirection(record, takerView = false) {
   return side === "buy" ? "long" : "short";
 }
 
+function voidReasonText(reason) {
+  const keys = {
+    shape: "reasonShape",
+    not_owner: "reasonNotOwner",
+    taker: "reasonTaker",
+    settled: "reasonSettled",
+    expired: "reasonExpired",
+    locked: "reasonLocked",
+    limits: "reasonLimits",
+    funds: "reasonFunds",
+  };
+  return keys[reason] ? t(keys[reason]) : reason;
+}
+
 function renderOffers() {
   const accepted = acceptedTradeIds();
   const offers = (state.snapshot?.offers || []).filter(({ record }) => !accepted.has(record.terms.id));
@@ -412,7 +427,7 @@ function renderTape() {
   const trades = state.snapshot?.trades || [];
   $("#tradeTape").innerHTML = trades.length ? trades.slice(0, 12).map(({ record, status, reason }) => {
     const direction = offerDirection(record);
-    return `<div class="tape-row"><span class="tape-side ${direction}">${direction.toUpperCase()}</span><div class="tape-data"><strong>${record.terms.qty} @ ${record.terms.px}</strong><code title="${record.terms.id}">${record.terms.id}${reason ? ` · ${reason}` : ""}</code></div><span class="trade-status ${status}">${t(status)}</span></div>`;
+    return `<div class="tape-row"><span class="tape-side ${direction}">${direction.toUpperCase()}</span><div class="tape-data"><strong>${record.terms.qty} @ ${record.terms.px}</strong><code title="${reason || record.terms.id}">${record.terms.id}${reason ? ` · ${voidReasonText(reason)}` : ""}</code></div><span class="trade-status ${status}">${t(status)}</span></div>`;
   }).join("") : `<div class="empty-state"><span>-</span></div>`;
 }
 
@@ -462,7 +477,7 @@ function renderDesk() {
   const offers = (state.snapshot?.offers || []).filter(({ record }) => record.terms.maker === state.did && !accepted.has(record.terms.id));
   const trades = personalTrades();
   $("#myOffers").innerHTML = state.did && offers.length ? offers.map(({ record }) => `<div class="desk-row"><div><strong>${offerDirection(record).toUpperCase()} · ${record.terms.qty} @ ${record.terms.px}</strong><code>${t("sweepExpiry", { n: record.terms.until })}</code></div><button class="secondary" type="button" data-copy="${record.terms.id}"><i data-lucide="copy"></i><span>${t("copy")}</span></button></div>`).join("") : `<div class="empty-state"><span>${t("noPersonalCalls")}</span></div>`;
-  $("#myTrades").innerHTML = state.did && trades.length ? trades.map(({ record, status, reason }) => `<div class="desk-row"><div><strong>${record.terms.qty} @ ${record.terms.px}</strong><code>${record.terms.id}${reason ? ` · ${reason}` : ""}</code></div><span class="trade-status ${status}">${t(status)}</span></div>`).join("") : `<div class="empty-state"><span>${t("noPersonalTrades")}</span></div>`;
+  $("#myTrades").innerHTML = state.did && trades.length ? trades.map(({ record, status, reason }) => `<div class="desk-row"><div><strong>${record.terms.qty} @ ${record.terms.px}</strong><code title="${reason || record.terms.id}">${record.terms.id}${reason ? ` · ${voidReasonText(reason)}` : ""}</code></div><span class="trade-status ${status}">${t(status)}</span></div>`).join("") : `<div class="empty-state"><span>${t("noPersonalTrades")}</span></div>`;
   const position = findPublicValue(state.snapshot?.market.positions?.top, state.did);
   const score = findPublicValue(state.snapshot?.market.pnl?.top, state.did);
   $("#myPosition").textContent = state.did ? position ?? t("publicTopOnly") : "-";

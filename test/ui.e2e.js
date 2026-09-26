@@ -181,3 +181,32 @@ test("keeps an accepted trade on the desk when close1 traffic buries it", async 
   await page.locator('[data-view-target="market"]').click();
   await expect(page.locator(`[data-take="${terms.id}"]`)).toHaveCount(0);
 });
+
+test("explains referee void reasons instead of presenting them as application errors", async ({ page }) => {
+  const snapshot = {
+    ...SNAPSHOT,
+    trades: [{
+      record: {
+        t: "trade",
+        season: "close-1",
+        taker: "did:key:z6Mkgck98AxgecEeJjs9QSMEDyVVB8ufZBq1Evd5q7WAqzCn",
+        terms: {
+          id: "void-funds-1",
+          maker: "did:key:z6MkgTDg3hEz4pwiFcJCDjRvR3hZbVWwy23oGuqFbFxu7Hne",
+          px: "225.67",
+          qty: "40",
+          side: "buy",
+          taker: "any",
+          until: 9,
+        },
+      },
+      status: "void",
+      reason: "funds",
+    }],
+  };
+  await mockSnapshot(page, snapshot);
+  await page.goto("/");
+  await expect(page.locator("#tradeTape")).toContainText("Yetersiz bakiye veya teminat");
+  await expect(page.locator(".tape-panel .section-heading")).toContainText("Tüm kayıtlı odalardaki referee sonuçları");
+  await expect(page.locator("#tradeTape")).not.toContainText("void-funds-1 · funds");
+});
